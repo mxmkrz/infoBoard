@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+
+<h:head>
+    <script type="application/javascript">
+        function socketListener(message) {
+            console.log(message);
+            alert(1223)
+        }
+    </script>
+
+    <!--    <script type="application/javascript">-->
+    <!--        function onMessage(String) {-->
+    <!--            window.location.reload();-->
+    <!--            // console.log(String);-->
+
+    <!--        }-->
+    <!--    </script>-->
+    <!--&lt;!&ndash;    <h:outputScript >&ndash;&gt;-->
+    <!--&lt;!&ndash;        function onMessage(String) {&ndash;&gt;-->
+    <!--&lt;!&ndash;            window.location.reload();&ndash;&gt;-->
+    <!--&lt;!&ndash;            console.log(String);&ndash;&gt;-->
+    <!--&lt;!&ndash;        }&ndash;&gt;-->
+    <!--&lt;!&ndash;    </h:outputScript>&ndash;&gt;-->
+    <!--    <f:websocket channel="websoket" onmessage="onMessage"/>-->
+</h:head>
+<h:body>
+    <f:websocket channel="websoket" onmessage="socketListener"/>
+
+
+
+   
+    <div id="something" class="table-responsive container">
+        <table>
+            <tr class="table-active">
+                <th>Date</th>
+                <th>Time</th>
+                <th>Patient Name</th>
+                <th>Patient Surname</th>
+                <th>Status</th>
+                <th>Therapy Type</th>
+                <th>Reason To Cancel</th>
+            </tr>
+            <h:panelGroup>
+                <ui:repeat var="event" value="#{eventView.eventsToday}">
+                    <tr>
+                        <td><h:outputText value="#{event.date}"/></td>
+                        <td><h:outputText value="#{event.time}"/></td>
+                        <td><h:outputText value="#{event.patientName}"/></td>
+                        <td><h:outputText value="#{event.patientSurname}"/></td>
+                        <td><h:outputText value="#{event.status}"/></td>
+                        <td><h:outputText value="#{event.therapyType}"/></td>
+                        <td><h:outputText value="#{event.reasonToCancel}"/></td>
+
+                    </tr>
+                </ui:repeat>
+            </h:panelGroup>
+
+        </table>
+    </div>
+
+</h:body>
+</html>
