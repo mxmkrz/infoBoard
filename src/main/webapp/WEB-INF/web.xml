@@ -4,11 +4,22 @@
          xmlns="http://java.sun.com/xml/ns/javaee"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          id="WebApp_ID" version="3.0">
-
+<!--    <display-name>Infoboard</display-name>-->
+<!--    <welcome-file-list>-->
+<!--        <welcome-file>infoTable.xhtml</welcome-file>-->
+<!--    </welcome-file-list>-->
     <context-param>
         <param-name>javax.faces.ENABLE_WEBSOCKET_ENDPOINT</param-name>
         <param-value>true</param-value>
     </context-param>
-
+<!--    <servlet>-->
+<!--        <servlet-name>FacesServlet</servlet-name>-->
+<!--        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>-->
+<!--        <load-on-startup>1</load-on-startup>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>FacesServlet</servlet-name>-->
+<!--        <url-pattern>*.xhtml</url-pattern>-->
+<!--    </servlet-mapping>-->
 
 </web-app>

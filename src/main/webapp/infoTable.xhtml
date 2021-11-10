@@ -4,67 +4,60 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
 <h:head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
     <script type="application/javascript">
-        function socketListener(message) {
-            console.log(message);
-            alert(1223)
+        function onMessage(message) {
+            window.location.reload();
+            console.log(message)
         }
     </script>
-
-    <!--    <script type="application/javascript">-->
-    <!--        function onMessage(String) {-->
-    <!--            window.location.reload();-->
-    <!--            // console.log(String);-->
-
-    <!--        }-->
-    <!--    </script>-->
-    <!--&lt;!&ndash;    <h:outputScript >&ndash;&gt;-->
-    <!--&lt;!&ndash;        function onMessage(String) {&ndash;&gt;-->
-    <!--&lt;!&ndash;            window.location.reload();&ndash;&gt;-->
-    <!--&lt;!&ndash;            console.log(String);&ndash;&gt;-->
-    <!--&lt;!&ndash;        }&ndash;&gt;-->
-    <!--&lt;!&ndash;    </h:outputScript>&ndash;&gt;-->
-    <!--    <f:websocket channel="websoket" onmessage="onMessage"/>-->
 </h:head>
 <h:body>
-    <f:websocket channel="websoket" onmessage="socketListener"/>
+    <div align="center">
+        <div class="container-fluid">
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <p class="text-primary m-0 fw-bold" align="center">Information </p>
+                </div>
+                <div class="card-body">
+                    <div class="patients_input form-group">
+                        <div class="table-responsive table mt-2">
+                            <table>
+                                <tr class="table my-0">
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Patient Name</th>
+                                    <th>Patient Surname</th>
+                                    <th>Status</th>
+                                    <th>Therapy Type</th>
+                                    <th>Reason To Cancel</th>
+                                </tr>
+                                <h:panelGroup>
+                                    <ui:repeat var="event" value="#{eventView.eventsToday}">
+                                        <tr>
+                                            <td><h:outputText value="#{event.date}"/></td>
+                                            <td><h:outputText value="#{event.time}"/></td>
+                                            <td><h:outputText value="#{event.patientName}"/></td>
+                                            <td><h:outputText value="#{event.patientSurname}"/></td>
+                                            <td><h:outputText value="#{event.status}"/></td>
+                                            <td><h:outputText value="#{event.therapyType}"/></td>
+                                            <td><h:outputText value="#{event.reasonToCancel}"/></td>
 
+                                        </tr>
+                                    </ui:repeat>
+                                </h:panelGroup>
+                            </table>
 
-
-   
-    <div id="something" class="table-responsive container">
-        <table>
-            <tr class="table-active">
-                <th>Date</th>
-                <th>Time</th>
-                <th>Patient Name</th>
-                <th>Patient Surname</th>
-                <th>Status</th>
-                <th>Therapy Type</th>
-                <th>Reason To Cancel</th>
-            </tr>
-            <h:panelGroup>
-                <ui:repeat var="event" value="#{eventView.eventsToday}">
-                    <tr>
-                        <td><h:outputText value="#{event.date}"/></td>
-                        <td><h:outputText value="#{event.time}"/></td>
-                        <td><h:outputText value="#{event.patientName}"/></td>
-                        <td><h:outputText value="#{event.patientSurname}"/></td>
-                        <td><h:outputText value="#{event.status}"/></td>
-                        <td><h:outputText value="#{event.therapyType}"/></td>
-                        <td><h:outputText value="#{event.reasonToCancel}"/></td>
-
-                    </tr>
-                </ui:repeat>
-            </h:panelGroup>
-
-        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
+    <f:websocket channel="websocket" onmessage="onMessage"/>
 </h:body>
 </html>
